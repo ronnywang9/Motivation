@@ -16,6 +16,6 @@ ResultPageMap = dict(searchResultNumberXpath = ".//*[@id='container']/div[2]/div
 					 searchResultListColumnCss = ".column",
 					 searchResultAdContainerCss = ".adcontainer",
 					 searchResultFirstOneXpath = ".//*[@id='container']/div[3]/div/div[1]/div[1]/div[1]",
-					 searchNext100ButtonCss = ".btn"
-
+					 searchNext100ButtonCss = ".btn",
+					 searchResultPrintedTotalNumberMsgCss = ".query-summary"
 	)
