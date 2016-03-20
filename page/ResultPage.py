@@ -1,10 +1,13 @@
 from PageCommon                					        import PageCommon
 from PageCommon                					        import IncorrectPageException
 from PageCommon                                         import TimeoutException
+from selenium.common.exceptions                         import NoSuchElementException
 from Motivation.UiMap          					        import ResultPageMap
 from selenium.webdriver.common.keys                     import Keys
 from selenium.webdriver.common.action_chains            import ActionChains
 import random
+import time
+import re
 
 class MoatResultPage(PageCommon):
 
@@ -48,22 +51,45 @@ class MoatResultPage(PageCommon):
         except:
             raise IncorrectPageException
 
+    def grab_printed_total_search_number(self):
+        try:
+            printedTotalNumberMsg = self.find_element("cssSelector",
+                                                      ResultPageMap['searchResultPrintedTotalNumberMsgCss']
+            ).text
+            print "Query summary message is %s ." % printedTotalNumberMsg
+            
+            removeText = ' ads for ' + searchResultAdNameValue
+            print removeText
+            
+            global printedQuerySummaryNumber
+            printedQuerySummaryNumber = int(printedTotalNumberMsg.strip(removeText).replace(',',''))
+            print "The printed total search number is %s ." % printedQuerySummaryNumber
+        except:
+            raise IncorrectPageException
+
     def fetch_total_count(self):
-        while True:
-            try:
-                # next_page_button = self.wait_until_element_clickable(10,
-                #                                                      "cssSelector",
-                #                                                      ResultPageMap['searchNext100ButtonCss']
-                # )
-                next_page_button = self.wait_for_element_visibility(10,
-                                                                     "cssSelector",
-                                                                     ResultPageMap['searchNext100ButtonCss']
-                )
-                next_page_button.click()    
-            except TimeoutException:
+
+        pages = int(printedQuerySummaryNumber) // 100
+        print "Pages = %s " % pages
+
+        i = 0
+        while i < pages:
+            time.sleep(2)
+            nextButton = self.find_element('cssSelector',
+                                           ResultPageMap['searchNext100ButtonCss']
+            )
+            print "Next 100 ads button is there - No. %s " % i
+            nextButton.click()
+            print "Clicking the next 100 ads button - No. %s " % i
+            i += 1
+
+            if i == pages:
                 break
-        searchResultsInColumn = self.driver.find_elements_by_css_selector(ResultPageMap['searchResultAdContainerCss'])
-        print "The count of the single page is %s ." % len(searchResultsInColumn)           
+
+        time.sleep(2)
+        ads = self.driver.find_elements_by_xpath("*//div[@class='adcontainer']")
+        totalNumberOfAds = int(len(ads))
+        print "The count of the single page is %s ." % totalNumberOfAds           
 
     def fetch_random_one_from_results_list(self):
         try:

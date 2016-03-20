@@ -3,7 +3,6 @@ from PageCommon                                    	import IncorrectPageExceptio
 from Motivation.UiMap                              	import HomePageMap
 from selenium.webdriver.common.keys             	import Keys
 from selenium.webdriver.common.action_chains    	import ActionChains
-import logging
 import random
 import time
 import re
