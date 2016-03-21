@@ -28,7 +28,7 @@ pip install nose
 
 Setting up python - Selenium environment: http://selenium-python.readthedocs.org/installation.html
 
-After downloading the codes, please setup PATHONPATH when running locally. Example:
+After downloading the codes, please setup PATHONPATH as the path to the folder when running locally. Example:
 
 	export PYTHONPATH=/Users/RonnyWang/Workspace/Moativation_python
 
