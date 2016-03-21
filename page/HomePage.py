@@ -87,8 +87,3 @@ class MoatHomePage(PageCommon):
     		print ' '.join(adsNumbers)
     	except:
     		raise IncorrectPageException
-
-
-
-
-

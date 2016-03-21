@@ -68,28 +68,30 @@ class MoatResultPage(PageCommon):
             raise IncorrectPageException
 
     def fetch_total_count(self):
+        try:
+            pages = int(printedQuerySummaryNumber) // 100
+            print "Pages = %s " % pages
 
-        pages = int(printedQuerySummaryNumber) // 100
-        print "Pages = %s " % pages
+            i = 0
+            while i < pages:
+                time.sleep(2)
+                nextButton = self.find_element('cssSelector',
+                                               ResultPageMap['searchNext100ButtonCss']
+                )
+                print "Next 100 ads button is there - No. %s " % i
+                nextButton.click()
+                print "Clicking the next 100 ads button - No. %s " % i
+                i += 1
 
-        i = 0
-        while i < pages:
+                if i == pages:
+                    break
+
             time.sleep(2)
-            nextButton = self.find_element('cssSelector',
-                                           ResultPageMap['searchNext100ButtonCss']
-            )
-            print "Next 100 ads button is there - No. %s " % i
-            nextButton.click()
-            print "Clicking the next 100 ads button - No. %s " % i
-            i += 1
-
-            if i == pages:
-                break
-
-        time.sleep(2)
-        ads = self.driver.find_elements_by_xpath("*//div[@class='adcontainer']")
-        totalNumberOfAds = int(len(ads))
-        print "The count of the single page is %s ." % totalNumberOfAds           
+            ads = self.driver.find_elements_by_xpath("*//div[@class='adcontainer']")
+            totalNumberOfAds = int(len(ads))
+            print "The count of the single page is %s ." % totalNumberOfAds  
+        except:
+            raise IncorrectPageException
 
     def fetch_random_one_from_results_list(self):
         try:
@@ -158,17 +160,3 @@ class MoatResultPage(PageCommon):
             
         except:
             raise IncorrectPageException
-
-
-
-
-
-
-
-
-
-
-
-
-
-

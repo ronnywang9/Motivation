@@ -15,18 +15,18 @@ class MoatAdCountTest(BaseTestAction, unittest.TestCase):
         super(MoatAdCountTest, self).setUp()
         self.navigate_to_page(Moat_Constants['Base_URL'])
 
-    # def test_MoatAdCountSinglePage(self):
+    def test_MoatAdCountSinglePage(self):
 
-    # 	searching = MoatHomePage(self.driver)
-    # 	searching.submit_search_request()
+    	searching = MoatHomePage(self.driver)
+    	searching.submit_search_request()
 
-    # 	search_result = MoatResultPage(self.driver)
-    # 	search_result.check_search_result_ad_name()
-    #   	search_result.fetch_count_of_search_results_single_page()
+    	search_result = MoatResultPage(self.driver)
+    	search_result.check_search_result_ad_name()
+      	search_result.fetch_count_of_search_results_single_page()
 
-    #   	print "randSearchItemValue is %s " % hp.randSearchItem.lower()
-    #     print "searchResultAdNameValue is %s " % rp.searchResultAdNameValue
-    #     self.assertEqual(hp.randSearchItem.lower(), rp.searchResultAdNameValue)
+      	print "randSearchItemValue is %s " % hp.randSearchItem.lower()
+        print "searchResultAdNameValue is %s " % rp.searchResultAdNameValue
+        self.assertEqual(hp.randSearchItem.lower(), rp.searchResultAdNameValue)
 
     def test_MoatAdTotalCount(self):
 
@@ -39,19 +39,6 @@ class MoatAdCountTest(BaseTestAction, unittest.TestCase):
         search_result.fetch_total_count()
 
         time.sleep(3)
-        
-    # def test_MoatAdResultFetchRandomOne(self):
-
-    # 	searching = MoatHomePage(self.driver)
-    # 	searching.submit_search_request()
-
-    # 	search_result = MoatResultPage(self.driver)
-    # 	search_result.check_search_result_ad_name()
-    #   	search_result.fetch_random_one_from_results_list()
-
-    #     self.assertEqual(hp.randSearchItem.lower(), rp.searchResultAdNameValue)
-
-    #     time.sleep(6)
 
     def tearDown(self):
         super(MoatAdCountTest, self).tearDown()
