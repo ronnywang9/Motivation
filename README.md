@@ -38,6 +38,11 @@ After downloading the codes, please setup PATHONPATH. Example:
 2. nosetests moat_*****_test.py   --  for running a specific test module;
 3. nosetests --nocapture   --  for running along with logging information displayed on console
 
+## Futher improvements:
+
+1. Logging system;
+2. Generating reports.
+
 ## Contributors
 
 Ronny Wang
