@@ -23,6 +23,7 @@ Structure:
 ## Installation
 
 pip install -U selenium
+
 pip install nose
 
 Setting up python - Selenium environment: http://selenium-python.readthedocs.org/installation.html
