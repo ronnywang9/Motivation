@@ -28,17 +28,11 @@ class MoatTryTheseAdTest(BaseTestAction, unittest.TestCase):
 
         time.sleep(2)
 
-    # def test_MoatTryTheseAdsRandom(self):
-    #     trythese_search = MoatHomePage(self.driver)
-    #     trythese_search.grab_try_these_list_ads_name_sss()
-    #     tryTheseNo1 = hp.elfun.text
-
-    #     time.sleep(1)
-    #     driver.refresh()
-    #     trythese_search.grab_try_these_list_ads_name_sss()
-    #     tryTheseNo2 = hp.elfun.text
-
-    #     print tryTheseNo1, tryTheseNo2
+    def test_MoatTryTheseAdsRandom(self):
+        trythese_search = MoatHomePage(self.driver)
+        trythese_search.grab_try_these_list_ads_name_compare()
+        self.assertTrue(hp.tryTheseLinks1String != hp.tryTheseLinks2String)
+        print "The Ads in Try These list are generated randomly. "
 
     def tearDown(self):
         super(MoatTryTheseAdTest, self).tearDown()

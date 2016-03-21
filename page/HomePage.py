@@ -1,8 +1,8 @@
-from PageCommon                                    	import PageCommon
-from PageCommon                                    	import IncorrectPageException
-from Motivation.UiMap                              	import HomePageMap
-from selenium.webdriver.common.keys             	import Keys
-from selenium.webdriver.common.action_chains    	import ActionChains
+from PageCommon                                        import PageCommon
+from PageCommon                                        import IncorrectPageException
+from Motivation.UiMap                                  import HomePageMap
+from selenium.webdriver.common.keys                 import Keys
+from selenium.webdriver.common.action_chains        import ActionChains
 import random
 import time
 import re
@@ -54,36 +54,53 @@ class MoatHomePage(PageCommon):
         except:
             raise IncorrectPageException
 
-    def grab_try_these_list_ads_name_sss(self):
-    	try:
-    		tryTheseFirstAd = self.driver.find_elements_by_xpath(HomePageMap['tryTheseAdsFun'])
-    		for elfun in tryTheseFirstAd:
-    			print elfun.text
-    	except:
-    		raise IncorrectPageException
+    def grab_try_these_list_ads_name_compare(self):
+        try:
+            tryTheseAdsList1 = self.driver.find_elements_by_xpath(HomePageMap['tryTheseAds'])
+            tryTheseLinks1 = []
+            tryTheseLinks1.append(tryTheseAdsList1[0].text)
+            tryTheseLinks1.append(tryTheseAdsList1[1].text)
+            tryTheseLinks1.append(tryTheseAdsList1[2].text)
+            global tryTheseLinks1String
+            tryTheseLinks1String = ' '.join(tryTheseLinks1)
+            print "tryTheseLinks1 is %s " % tryTheseLinks1String
+
+            self.driver.refresh()
+
+            tryTheseAdsList2 = self.driver.find_elements_by_xpath(HomePageMap['tryTheseAds'])
+            tryTheseLinks2 = []
+            tryTheseLinks2.append(tryTheseAdsList2[0].text)
+            tryTheseLinks2.append(tryTheseAdsList2[1].text)
+            tryTheseLinks2.append(tryTheseAdsList2[2].text)
+            global tryTheseLinks2String
+            tryTheseLinks2String = ' '.join(tryTheseLinks2)
+            print "tryTheseLinks2 is %s " % tryTheseLinks2String
+
+        except:
+            raise IncorrectPageException
 
     def grab_recent_seen_ad_list_time(self):
-    	try:
-    		recentSeenAdsList = self.driver.find_elements_by_css_selector(HomePageMap['resentSeenAdsCss'])
-    		numberOfRecentAds = len(recentSeenAdsList)
-    		print "number is %s" % numberOfRecentAds
+        try:
+            recentSeenAdsList = self.driver.find_elements_by_css_selector(HomePageMap['resentSeenAdsCss'])
+            numberOfRecentAds = len(recentSeenAdsList)
+            print "number is %s" % numberOfRecentAds
             # Log.info("number is %s" % numberOfRecentAds)
 
-    		adsList = []
-    		for el in range(1, numberOfRecentAds+1):
-    			recentSeenAdChild = self.driver.find_element_by_xpath(".//*[@id='search-bar']/div/div[2]/ul/li[%s]/h4" % el)
-    			recentSeenAdText = recentSeenAdChild.text
-    			print recentSeenAdText
-    			adsList.append(recentSeenAdText)
+            adsList = []
+            for el in range(1, numberOfRecentAds+1):
+                recentSeenAdChild = self.driver.find_element_by_xpath(".//*[@id='search-bar']/div/div[2]/ul/li[%s]/h4" % el)
+                recentSeenAdText = recentSeenAdChild.text
+                print recentSeenAdText
+                adsList.append(recentSeenAdText)
 
-    		adsString = ' '.join(adsList)
-    		print adsString
+            adsString = ' '.join(adsList)
+            print adsString
 
-    		adsNumbers = re.findall('\d+', adsString)
-    		if all(x <= 30 for x in adsNumbers):
-    			print "All resent seen Ads are no more than 30 mins old"
-    		else:
-    			print "Some of or all resent seen Ads are more than 30 mins old"
-    		print ' '.join(adsNumbers)
-    	except:
-    		raise IncorrectPageException
+            adsNumbers = re.findall('\d+', adsString)
+            if all(x <= 30 for x in adsNumbers):
+                print "All resent seen Ads are no more than 30 mins old"
+            else:
+                print "Some of or all resent seen Ads are more than 30 mins old"
+            print ' '.join(adsNumbers)
+        except:
+            raise IncorrectPageException
