@@ -1,7 +1,6 @@
 HomePageMap = dict(searchAdEngineNameXpath = "//h5[contains(.,'Moat Ad Search')]",
 	   			   searchFieldId = "pro-landing-search-box",
 	   			   tryTheseAds = ".//*[@id='search-bar']/div/div[1]/span/a",
-	   			   tryTheseAdsFun = ".//*[@id='search-bar']/div/div[1]/span",
 	   			   tryTheseAdOneXpath = ".//*[@id='search-bar']/div/div[1]/span/a[1]",
 	   			   tryTheseAdTwoXpath = ".//*[@id='search-bar']/div/div[1]/span/a[2]",
 	   			   tryTheseAdThreeXpath = ".//*[@id='search-bar']/div/div[1]/span/a[3]",
