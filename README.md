@@ -28,15 +28,15 @@ pip install nose
 
 Setting up python - Selenium environment: http://selenium-python.readthedocs.org/installation.html
 
-After downloading the codes, please setup PATHONPATH. Example:
+After downloading the codes, please setup PATHONPATH when running locally. Example:
 
 	export PYTHONPATH=/Users/RonnyWang/Workspace/Moativation_python
 
-## Tests
+## Tests Running:
 
-1. nosetests   --  for running all test cases;
-2. nosetests moat_*****_test.py   --  for running a specific test module;
-3. nosetests --nocapture   --  for running along with logging information displayed on console
+1. nosetests                              --  for running all test cases;
+2. nosetests moat_*****_test.py           --  for running a specific test module;
+3. nosetests --nocapture                  --  for running along with logging information displayed on console
 
 ## Futher improvements:
 
@@ -46,4 +46,5 @@ After downloading the codes, please setup PATHONPATH. Example:
 ## Contributors
 
 Ronny Wang
+
 ronny.wang.r9@gmail.com 
