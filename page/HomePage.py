@@ -97,7 +97,9 @@ class MoatHomePage(PageCommon):
             print adsString
 
             adsNumbers = re.findall('\d+', adsString)
-            if all(x <= 30 for x in adsNumbers):
+            if not adsNumbers:
+                print "All resent seen Ads are seen today"
+            elif all(x <= 30 for x in adsNumbers):
                 print "All resent seen Ads are no more than 30 mins old"
             else:
                 print "Some of or all resent seen Ads are more than 30 mins old"
